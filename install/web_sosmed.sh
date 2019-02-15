@@ -32,7 +32,8 @@ wget https://github.com/sdcilsy/sosial-media/archive/master.zip
 echo "=============================>"
 echo "Ekstrak File"
 echo "=============================>"
-unzip master.zip
+sudo apt-get install unzip
+sudo unzip master.zip
 echo "=============================>"
 echo "Memindahkan data"
 echo "=============================>"
