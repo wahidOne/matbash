@@ -28,7 +28,6 @@ case $choice in
      echo "PILIH MENU NO 1"
      source install/lamp_server.sh
      echo "======================"
-
      ;;
 
      2)
@@ -36,10 +35,7 @@ case $choice in
      echo "PILIH MENU NO 2"
                 source install/web_sosmed.sh
                 source install/config_sosmed.sh
-
      echo "======================"
-
-
      ;;
 
      3)
@@ -47,9 +43,6 @@ case $choice in
      echo "PILIH MENU NO 3"
         source install/uninstall_lamp.sh
      echo "======================"
-
-
-
      ;;
 
      0)
@@ -61,6 +54,7 @@ case $choice in
 
      echo "PILIHAN SALAH , PILIH NO MENU "
      ;;
+
 esac
 done
 
