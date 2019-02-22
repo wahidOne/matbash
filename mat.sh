@@ -174,11 +174,19 @@ case $choice in
      echo "OK, see you!"
      break
      ;;
-
      *)
-
-     echo "PILIHAN SALAH , PILIH NO MENU "
+     echo "That is not a valid choice."
      ;;
+
+     0)
+     echo "OK, see you!"
+     break
+     ;;
+     *)
+     echo "That is not a valid choice."
+     ;;
+
+
 esac
 done
 
