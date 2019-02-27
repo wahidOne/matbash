@@ -61,14 +61,14 @@ EOF
     "3")  
 ##================================ 
     echo "UNINSATAL LAMP " 
-    source install/docker.sh
+    source uninstall_lamp.sh
 ##================================ 
     ;;
    
     "4")  
 ##================================ 
     echo "INSATAL DOCKER " 
-    source uninstall_lamp.sh
+    source install/docker.sh
 ##================================ 
     ;;
    
