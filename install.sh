@@ -483,3 +483,29 @@ do_install() {
 # wrapped up in a function so that we have some protection against only getting
 # half the file during "curl | sh"
 do_install
+#cek
+#docker --version
+
+#sudo user docker
+#sudo groupadd docker
+sudo usermod -aG docker $USER
+
+#set access
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "$HOME/.docker" -R
+
+#install docker compose
+sudo apt  install docker-compose -y
+
+#cek
+#docker-compose --version
+
+
+#install docker machine
+
+base=https://github.com/docker/machine/releases/download/v0.16.0 &&
+  curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+  sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+
+#cek
+#docker-machine --version
