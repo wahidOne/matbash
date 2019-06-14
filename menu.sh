@@ -13,6 +13,7 @@ do
     (1)INSTALL
     (2)UBUNTU UPDATE
     (3)UBUNTU UPGRADE
+    (4)IP PUBLIC
     (Q)uit
     ------------------------------
 EOF
@@ -96,6 +97,13 @@ done
     "3")  
     echo "UBUNTU UPGRADE"
     sudo apt-get upgrade 
+    ;;
+   
+    "4")  
+    echo "IP PUBLIC"
+    echo "===>"
+    curl ifconfig.me 
+    echo ""    
     ;;
    
     "q"|"Q") echo "Quit Menu" 
