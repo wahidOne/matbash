@@ -1,98 +1,41 @@
-#!/bin/bash
+#!/bin/sh
 
-#matbash
-#mamat08nurahmat
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
 
-while true;
-clear
+#cek
+#docker --version
 
-do
+#install docker compose
+sudo apt  install docker-compose -y
 
-
-echo "============================="
-echo " INSTALL LAMP-SERVER"
-echo "============================="
-echo
-
-echo -n "INSTALL Y/N: "
-read choice
-echo
-
-case $choice in
-
-     "Y"|"y")
-     echo "======================"
-     echo "PILIH YES"
+#cek
+#docker-compose --version
 
 
-        #Uninstall old versions
-        sudo apt-get remove docker docker-engine docker.io containerd runc
+#install docker machine
 
-#Install Docker CE
-        #-Install using the repository
-     
-        #SET UP THE REPOSITORY
-        #1.Update the apt package index:
-        sudo apt-get update;
+base=https://github.com/docker/machine/releases/download/v0.16.0 &&
+  curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+  sudo install /tmp/docker-machine /usr/local/bin/docker-machine
 
-        #2.Install packages to allow apt to use a repository over HTTPS:
-        sudo apt-get install \
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        gnupg-agent \
-        software-properties-common
-
-        #3.Add Docker’s official GPG key:
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-        #Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
-        sudo apt-key fingerprint 0EBFCD88
-
-        #4.Use the following command to set up the stable repository
-        sudo add-apt-repository \
-        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-        $(lsb_release -cs) \
-        stable"
+#cek
+#docker-machine --version
 
 
-#INSTALL DOCKER CE
-        #1.Update the apt package index
-        sudo apt-get update
+#sudo user docker
+#sudo groupadd docker
+sudo usermod -aG docker $USER
+
+##!!!!!
+#sudo reboot
+##=================================================
+#cannot-login-to-docker-account
+#sudo apt install gnupg2 pass
+
+#docker login
 
 
-        #2.Install the latest version of Docker CE and containerd, or go to the next step to install a specific version:
-        sudo apt-get install docker-ce docker-ce-cli containerd.io        
-
-
-
-
-        clear;
-
-
-
-
-
-     echo "======================"
-     echo "INSTALL DOCKER DONE...!!!!"
-     echo "======================"
-break
-     ;;
-
-
-     "N"|"n")
-     echo "======================"
-     echo "PILIH NO"
-     echo "======================"
-break
-     ;;
-
-     *)
-
-
-     echo "PILIHAN SALAH , PILIH NO MENU "
-
-     ;;
-esac
-done
-
+#set access
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "$HOME/.docker" -R
