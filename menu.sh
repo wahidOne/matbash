@@ -36,6 +36,11 @@ do
     (2)CONFIG SOSMED WEB
     (3)UNINSTALL LAMP
     (4)DOCKER
+    (5)DOCKER COMPOSE
+    (6)DOCKER MACHINE
+    (7)DOCKER USER
+    (8)DOCKER LOGIN
+    (9)DOCKER CEK
     (B)ack
     (Q)uit
     ------------------------------
@@ -69,9 +74,85 @@ EOF
     "4")  
 ##================================ 
     echo "INSATAL DOCKER " 
-    source install/docker.sh
+#    source install/docker.sh
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+
+# docker --version
+sudo rm get-docker.sh
+
 ##================================ 
     ;;
+
+    "5")  
+##================================ 
+    echo "INSATAL DOCKER COMPOSE" 
+
+#install docker compose
+sudo apt  install docker-compose -y
+
+#cek
+# docker-compose --version
+##================================ 
+    ;;
+
+    "6")  
+##================================ 
+    echo "INSATAL DOCKER MACHINE " 
+
+#install docker machine
+
+base=https://github.com/docker/machine/releases/download/v0.16.0 &&
+  curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+  sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+
+#cek
+# docker-machine --version
+##================================ 
+    ;;
+
+
+    "7")  
+##================================ 
+    echo "DOCKER USER " 
+
+#sudo user docker
+#sudo groupadd docker
+sudo usermod -aG docker $USER
+
+#cannot-login-to-docker-account
+sudo apt install gnupg2 pass -y
+
+##================================ 
+    ;;
+
+
+    "8")  
+##================================ 
+    echo "DOCKER LOGIN " 
+
+docker login
+
+
+#set access
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "$HOME/.docker" -R
+##================================ 
+    ;;
+
+
+    "9")  
+##================================ 
+    echo "DOCKER CEK " 
+
+docker --version
+
+docker-compose --version
+docker-machine --version
+##================================ 
+    ;;
+
+
    
     "B"|"b")  break                 ;;
     "Q"|"q")  exit                  ;;
