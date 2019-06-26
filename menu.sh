@@ -14,6 +14,7 @@ do
     (2)UBUNTU UPDATE
     (3)UBUNTU UPGRADE
     (4)IP PUBLIC
+    (5)CODE SERVER
     (Q)uit
     ------------------------------
 EOF
@@ -185,6 +186,15 @@ done
     echo "===>"
     curl ifconfig.me 
     echo ""    
+    ;;   
+	
+    "5")  
+    echo "CODE SERVER"
+    echo "===>"
+	sudo chmod 777 "$HOME" -R
+	docker run -d -p 1234:8443 -v "$HOME:/home/coder/project" codercom/code-server --allow-http --no-auth
+    curl ifconfig.me echo":1234"
+    echo "<======="    
     ;;
    
     "q"|"Q") echo "Quit Menu" 
@@ -196,3 +206,4 @@ done
     esac
     sleep 2
 done
+
