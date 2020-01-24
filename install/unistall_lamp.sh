@@ -28,7 +28,7 @@ case $choice in
         echo "=============================>"
         echo "Uninstall Apache"
         echo "----------------------------->"
-        sudo rm -rf /var/www/html/*
+        sudo rm -rf /var/www
         sudo service apache2 stop
         sudo apt-get --yes purge 'apache2*'
         sudo apt-get --yes autoremove --purge
