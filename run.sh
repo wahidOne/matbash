@@ -10,13 +10,11 @@ do
     ------------------------------
     Please enter your choice:
 
-    (1)INSTALL DOCKER
+    (1)INSTALL
     (2)UBUNTU UPDATE
     (3)UBUNTU UPGRADE
     (4)IP PUBLIC
     (5)CODE SERVER
-    (6)SUDO REBOOT
-    (7)INSTALL JENKINS
     (Q)uit
     ------------------------------
 EOF
@@ -25,7 +23,7 @@ EOF
 	
     "1")  
 #========MENU 1 WHILE DO===============
-#======================================    
+#=============================    
 while :
 do
     clear
@@ -35,13 +33,15 @@ do
     ------------------------------
     Please enter your choice:
 
-
-    (1)DOCKER INSTALL
-    (2)DOCKER COMPOSE
-    (3)DOCKER MACHINE
-    (4)DOCKER USER
-    (5)DOCKER LOGIN
-    (6)DOCKER CEK
+    (1)LAMP 
+    (2)CONFIG SOSMED WEB
+    (3)UNINSTALL LAMP
+    (4)DOCKER
+    (5)DOCKER COMPOSE
+    (6)DOCKER MACHINE
+    (7)DOCKER USER
+    (8)DOCKER LOGIN
+    (9)DOCKER CEK
     (B)ack
     (Q)uit
     ------------------------------
@@ -49,9 +49,31 @@ EOF
     read -n1 -s
     case "$REPLY" in
 	
-   
-##================================ 
     "1")  
+##================================ 
+    echo "1.INSATAL LAMP_SERVER " 
+     source install/lamp_server.sh
+##================================     
+    ;;
+
+
+    "2")  
+##================================ 
+    echo "CONFIG SOSMED WEB " 
+    source install/web_sosmed.sh
+    source install/config_sosmed.sh
+##================================ 
+    ;;
+   
+    "3")  
+##================================ 
+    echo "UNINSATAL LAMP " 
+    source uninstall_lamp.sh
+##================================ 
+    ;;
+   
+    "4")  
+##================================ 
     echo "INSATAL DOCKER " 
 #    source install/docker.sh
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -60,11 +82,11 @@ sh get-docker.sh
 # docker --version
 sudo rm get-docker.sh
 
+##================================ 
     ;;
-##================================ 
 
+    "5")  
 ##================================ 
-    "2")  
     echo "INSATAL DOCKER COMPOSE" 
 
 #install docker compose
@@ -72,11 +94,11 @@ sudo apt  install docker-compose -y
 
 #cek
 # docker-compose --version
+##================================ 
     ;;
-##================================ 
 
+    "6")  
 ##================================ 
-    "3")  
     echo "INSATAL DOCKER MACHINE " 
 
 #install docker machine
@@ -87,12 +109,12 @@ base=https://github.com/docker/machine/releases/download/v0.16.0 &&
 
 #cek
 # docker-machine --version
+##================================ 
     ;;
-##================================ 
 
 
+    "7")  
 ##================================ 
-    "4")  
     echo "DOCKER USER " 
 
 #sudo user docker
@@ -102,32 +124,33 @@ sudo usermod -aG docker $USER
 #cannot-login-to-docker-account
 sudo apt install gnupg2 pass -y
 
+##================================ 
     ;;
-##================================ 
 
 
+    "8")  
 ##================================ 
-    "5")  
     echo "DOCKER LOGIN " 
 
 docker login
 
+
 #set access
 sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
 sudo chmod g+rwx "$HOME/.docker" -R
+##================================ 
     ;;
-##================================ 
 
 
+    "9")  
 ##================================ 
-    "6")  
     echo "DOCKER CEK " 
 
 docker --version
 docker-compose --version
 docker-machine --version
-    ;;
 ##================================ 
+    ;;
 
 
    
@@ -141,12 +164,9 @@ docker-machine --version
     sleep 2
 done
 
-#========END MENU 1 WHILE DO===============
-#==========================================    
+#=============================        
      ;;
    
-
-
     "2")  
     echo "UPDATE UBUNTU"
     sudo apt-get update 
@@ -173,83 +193,7 @@ done
     echo"port:1234"
     echo "<======="    
     ;;
-
-
-    "6")  
-    echo "SUDO REBOOT"
-    echo "======>"
-	sudo reboot
-    echo "<======="    
-    ;;
-
-
-    "7")  
-
-#========MENU 7 WHILE DO===============
-#======================================    
-while :
-do
-    clear
-    cat<<EOF
-    ==============================
-    MENU INSTALL JENKINS
-    ------------------------------
-    Please enter your choice:
-
-
-    (1)DOCKER JENKINS
-    (2)PASSWORD ADMIN
-
-    (B)ack
-    (Q)uit
-    ------------------------------
-EOF
-    read -n1 -s
-    case "$REPLY" in
-	
    
-##================================ 
-    "1")  
-    echo "DOCKER JENKINS"
-
-# Install Jenkins on Docker
-
-## Install Docker
-
-# docker rm -f blueocean
-docker run -d -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home --name blueocean jenkinsci/blueocean
-    ;;
-##================================ 
-
-##================================ 
-    "2")  
-    echo "PASSWORD ADMIN" 
-
-docker exec -it blueocean bash -c "cat /var/jenkins_home/secrets/initialAdminPassword"     
-
-    ;;
-##================================ 
-
-
-
-   
-    "B"|"b")  break                 ;;
-    "Q"|"q")  exit                  ;;
-   
- 
-    * )  echo "invalid option"     ;;
-
-    esac
-    sleep 4
-done
-
-#========END MENU 1 WHILE DO===============
-#==========================================
-
-    ;;
-
-
-
     "q"|"Q") echo "Quit Menu" 
     exit                      ;;
    
@@ -257,6 +201,6 @@ done
     * )  echo "invalid option"     ;;
 
     esac
-    sleep 4
+    sleep 2
 done
 
