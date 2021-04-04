@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#matbash
-#mamat08nurahmat
 
 echo "============================="
 echo " INSTALL WEB SOSMED"
